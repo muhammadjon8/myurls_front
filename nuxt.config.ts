@@ -9,5 +9,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+
   modules: ["@nuxt/icon", "@pinia/nuxt"],
+  compatibilityDate: "2024-08-16",
 });

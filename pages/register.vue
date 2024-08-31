@@ -49,7 +49,10 @@
           />
         </div>
         <div>
-          <button type="submit" class="w-full px-4 py-2 mt-6 text-white bg-blue-500 rounded-md">
+          <button
+            type="submit"
+            class="w-full px-4 py-2 mt-6 text-white bg-blue-500 rounded-md"
+          >
             Register
           </button>
         </div>
@@ -67,12 +70,14 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
+import { useUserStore } from "../stores/user";
 
 const fullname = ref("");
 const username = ref("");
 const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
+const userStore = useUserStore(); // Use the correct Pinia store hook
 
 const router = useRouter();
 
@@ -84,12 +89,13 @@ const register = async () => {
 
   try {
     // Make API call to register the user
-    const response = await axios.post("http://localhost:3000/api/user", {
+    const response = await axios.post("http://localhost:3030/api/user", {
       full_name: fullname.value,
       username: username.value,
       email: email.value,
       password: password.value,
     });
+    userStore.registerUser(); // Call store action or mutation to handle registration
     console.log("Registration successful:", response.data);
     // Redirect to login page
     router.push("/login");

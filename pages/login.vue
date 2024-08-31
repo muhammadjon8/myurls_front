@@ -53,21 +53,21 @@ const password = ref("");
 
 const router = useRouter();
 
-
 const login = async () => {
   console.log(`Username: ${username.value}, Password: ${password.value}`);
   // Add your login logic here
   try {
-    const response = await axios.post("http://localhost:3000/api/user/login", {
+    const response = await axios.post("http://localhost:3030/api/user/login", {
       username: username.value,
       password: password.value,
     });
-    console.log("Registration successful:", response.data);
-    router.push("/main");
+    console.log("Login successful:", response.data);
+    router.push("/");
   } catch (error) {
     console.error("Error logging in:", error);
     // Show an error message to the user
     alert("Invalid username or password");
   }
 };
+
 </script>

@@ -1,7 +1,6 @@
 <script setup></script>
 <template>
-  <h1 class="text-3xl font-bold underline text-red-600">Hello world!</h1>
-  <Icon name="uil:github" style="color: black" />
+  <h1>main page</h1>
 </template>
 
 
