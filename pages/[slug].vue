@@ -7,7 +7,7 @@
     <p v-if="errorMessage">{{ errorMessage }}</p>
   </div>
   <CopyToClipboard />
-  <Avatar/>
+  <Avatar :photo="imageUrl || profile.photo" @image-uploaded="handleImageUpload" />
 </template>
 
 <script setup>
@@ -55,7 +55,7 @@ const route = useRoute();
 const slug = route.params.slug;
 
 // Reactive variables
-const profile = ref({ full_name: "", link: "" });
+const profile = ref({ full_name: "", link: "", photo: "" });
 const errorMessage = ref("");
 
 // Fetch profile data on component mount

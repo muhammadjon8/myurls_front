@@ -3,7 +3,13 @@
     <!-- Avatar Display (Round Shape) -->
     <div class="avatar">
       <img v-if="imageUrl" :src="imageUrl" alt="Profile Avatar" />
-      <img v-else class="placeholder" src="../public/avatar.png" alt="Profile Avatar" />
+      <img v-else-if="props.photo" :src="props.photo" alt="" />
+      <img
+        v-else
+        class="placeholder"
+        src="../public/avatar.png"
+        alt=""
+      />
     </div>
 
     <!-- File Input for Image Upload -->
@@ -16,10 +22,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
 // Reactive property to hold the image URL for preview
-const imageUrl = ref('');
+const imageUrl = ref("");
+
+const props = defineProps({
+  photo: String,
+});
 
 // Function to preview the image
 const previewImage = (event) => {
