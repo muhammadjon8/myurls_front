@@ -60,6 +60,8 @@
             required
           />
         </div>
+        <!-- Display Error Message if it exists -->
+        <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
         <div>
           <button
             type="submit"
@@ -84,6 +86,7 @@ import { useRouter } from "vue-router";
 import axios from "axios";
 import { useUserStore } from "../stores/user";
 
+const errorMessage = ref("");
 const fullname = ref("");
 const username = ref("");
 const email = ref("");
@@ -109,10 +112,15 @@ const register = async () => {
     });
     userStore.registerUser(); // Call store action or mutation to handle registration
     console.log("Registration successful:", response.data);
+    errorMessage.value = "";
     // Redirect to login page
     router.push("/login");
   } catch (error) {
-    console.error(error.message);
+    if (error.response) {
+      errorMessage.value = error.response.data.message; // Display the error returned from the backend
+    } else {
+      errorMessage.value = "An unexpected error occurred. Please try again.";
+    }
   }
 };
 </script>
