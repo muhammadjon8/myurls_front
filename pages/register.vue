@@ -4,7 +4,9 @@
       <h2 class="text-2xl font-bold text-center">Register</h2>
       <form @submit.prevent="register">
         <div>
-          <label for="fullname" class="block text-sm font-medium text-gray-700">Full name</label>
+          <label for="fullname" class="block text-sm font-medium text-gray-700"
+            >Full name</label
+          >
           <input
             type="text"
             v-model="fullname"
@@ -13,7 +15,9 @@
           />
         </div>
         <div>
-          <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+          <label for="email" class="block text-sm font-medium text-gray-700"
+            >Email address</label
+          >
           <input
             type="email"
             v-model="email"
@@ -22,7 +26,9 @@
           />
         </div>
         <div>
-          <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+          <label for="username" class="block text-sm font-medium text-gray-700"
+            >Username</label
+          >
           <input
             type="text"
             v-model="username"
@@ -31,7 +37,9 @@
           />
         </div>
         <div>
-          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+          <label for="password" class="block text-sm font-medium text-gray-700"
+            >Password</label
+          >
           <input
             type="password"
             v-model="password"
@@ -40,7 +48,11 @@
           />
         </div>
         <div>
-          <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+          <label
+            for="confirmPassword"
+            class="block text-sm font-medium text-gray-700"
+            >Confirm Password</label
+          >
           <input
             type="password"
             v-model="confirmPassword"
@@ -100,7 +112,7 @@ const register = async () => {
     // Redirect to login page
     router.push("/login");
   } catch (error) {
-    console.error(`Error: ${error.message}`);
+    console.error(error.message);
   }
 };
 </script>

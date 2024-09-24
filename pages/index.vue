@@ -1,126 +1,47 @@
 <script setup>
+import { onMounted } from "vue";
+import { useRouter } from "vue-router";
 import axios from "axios";
 
-const name = ref("");
-const username = ref("");
-const link = ref("");
+const router = useRouter();
 
-const nameError = ref("");
-
-const usernameError = ref("");
-
-const linkError = ref("");
-
-const validateName = () => {
-  if (name.value.trim() === "") {
-    nameError.value = "Name is required.";
-    return false;
-  } else {
-    nameError.value = "";
-    return true;
-  }
-};
-
-const validateLink = () => {
-  if (link.value.trim() === "") {
-    linkError.value = "Link is required.";
-    return false;
-  } else if (!/^https?:\/\/.+$/.test(link.value)) {
-    linkError.value = "Please enter a valid link.";
-    return false;
-  } else {
-    linkError.value = "";
-    return true;
-  }
-};
-
-const submitForm = async (event) => {
-  event.preventDefault();
-  if (!validateName() || !validateUsername()) {
-    return;
-  }
-
+// Function to check login status and handle redirection
+const checkLogin = async () => {
   try {
-    const response = await axios.post("http://localhost:3030/api/user", {
-      full_name: name.value,
-      username: username.value,
-      link: link.value,
-    });
+    const response = await axios.post(
+      "http://localhost:3030/api/user/username",
+      null,
+      {
+        withCredentials: true, // This allows sending cookies with the request
+      }
+    );
+    console.log(response);
 
-    alert("Form submitted successfully!");
-    console.log(response.data);
-    name.value = "";
-    username.value = "";
-    link.value = "";
-  } catch (error) {
-    if (error.response) {
-      // Check if error has a response from the server
-      alert(
-        `Error: ${error.response.data.message || error.response.data.error}`
-      );
-    } else {
-      alert("An unexpected error occurred");
+    // If the backend returns the username directly (as a string)
+    const username = response.data;
+    console.log(username); // Assuming response.data is the username
+
+    if (username) {
+      router.push(`/${username}`); // Redirect to the user's profile page
     }
+  } catch (error) {
+    console.error("Error checking login status:", error);
+    // Optionally handle error (e.g., show a message if something goes wrong)
   }
 };
 
-const validateUsername = () => {
-  if (username.value.trim() === "") {
-    usernameError.value = "Username is required.";
-    return false;
-  } else {
-    usernameError.value = "";
-    return true;
-  }
-};
+// Run the check when the component is mounted
+onMounted(() => {
+  checkLogin();
+});
 </script>
+
 <template>
-  <div class="py-9">
-    <form action="" class="flex items-center justify-center flex-col">
-      <label for="name">Name:</label>
-      <input
-        type="text"
-        id="name"
-        v-model="name"
-        required
-        class="border py-1 px-2 rounded"
-      />
-      <p v-if="nameError" class="error-message">Name is required.</p>
-      <label for="username">username:</label>
-      <input
-        type="text"
-        id="username"
-        v-model="username"
-        required
-        class="border py-1 px-2 rounded"
-      />
-      <p v-if="usernameError" class="error-message">username is required.</p>
-      <label for="link">link:</label>
-      <input
-        type="link"
-        id="link"
-        v-model="link"
-        required
-        class="border py-1 px-2 rounded"
-      />
-      <p v-if="linkError" class="error-message">
-        Please enter a valid link address.
-      </p>
-      <br />
-      <button
-        class="py-2 px-3 bg-green-300 rounded"
-        type="submit"
-        @click="submitForm"
-      >
-        Submit
-      </button>
-    </form>
+  <div>
+    <!-- This message is shown only if the user is not logged in -->
+    Hello to the website, please Log in
   </div>
+  <CopyToClipboard />
 </template>
 
-<style scoped>
-.error-message {
-  color: red;
-  margin-top: 5px;
-}
-</style>
+<style scoped></style>
