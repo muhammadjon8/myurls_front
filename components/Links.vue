@@ -1,0 +1,31 @@
+<template>
+  <div>
+    <div v-for="link in userLinks" :key="link.id">
+      <a :href="link.url_link">{{ link.url_name }}</a>
+    </div>
+    <p v-if="!userLinks.length">No links available.</p>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted, watch } from "vue";
+import axios from "axios";
+
+const props = defineProps({
+  id: Number,
+});
+
+const userLinks = ref("");
+
+// Function to fetch user links
+async function fetchUserLinks() {
+  try {
+    const response = await axios.get(`http://localhost:3030/api/user-links/${props.id}`);
+      userLinks.value = response.data; // Assuming response.data is an array of links
+  } catch (error) {
+    console.error("Error fetching user links:", error);
+  }
+}
+
+watch(() => props.id, fetchUserLinks);
+</script>

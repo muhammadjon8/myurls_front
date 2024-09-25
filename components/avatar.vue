@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex flex-col items-center justify-center py-9">
     <!-- Avatar Display (Round Shape) -->
     <div class="avatar">
       <img v-if="imageUrl" :src="imageUrl" alt="Profile Avatar" />
@@ -13,11 +13,10 @@
     </div>
 
     <!-- File Input for Image Upload -->
-    <input type="file" @change="previewImage" accept="image/*" />
+    <!-- <input type="file" @change="previewImage" accept="image/*" /> -->
 
     <!-- Optionally, Save Button -->
-    <button @click="saveImage">Save Image</button>
-    <Icon name="mdi-light:home" />
+    <!-- <button @click="saveImage">Save Image</button> -->
   </div>
 </template>
 

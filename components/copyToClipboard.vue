@@ -1,14 +1,17 @@
 <template>
-  <div>
+  <div class="flex items-center justify-center flex-col">
     <!-- Display the dynamically generated full URL inside the input (readonly) -->
-    <input 
+    <div class="flex gap-5">
+      <input 
       v-model="fullRoute" 
       type="text" 
       readonly 
+      class="text-[10px] border rounded bg-green-100 h-10 w-56 text-center"
     />
     
     <!-- Button to copy the full route to the clipboard -->
-    <button @click="copyToClipboard">Copy to Clipboard</button>
+    <button @click="copyToClipboard" class="border text-[10px] rounded h-10 p-1">Copy to Clipboard</button>
+    </div>
 
     <!-- Confirmation message -->
     <p v-if="copySuccess">{{ copySuccess }}</p>
@@ -56,16 +59,6 @@ onMounted(() => {
 
 <style scoped>
 /* Style the input and button */
-input {
-  padding: 8px;
-  margin-right: 10px;
-  width: 100%;
-  cursor: default;
-}
-button {
-  padding: 8px 16px;
-  cursor: pointer;
-}
 p {
   color: green;
 }
