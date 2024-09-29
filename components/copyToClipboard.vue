@@ -2,15 +2,22 @@
   <div class="flex items-center justify-center flex-col">
     <!-- Display the dynamically generated full URL inside the input (readonly) -->
     <div class="flex gap-5">
-      <input 
-      v-model="fullRoute" 
-      type="text" 
-      readonly 
-      class="text-[10px] border rounded bg-green-100 h-10 w-56 text-center"
-    />
-    
-    <!-- Button to copy the full route to the clipboard -->
-    <button @click="copyToClipboard" class="border text-[10px] rounded h-10 p-1">Copy to Clipboard</button>
+      <input
+        v-model="fullRoute"
+        type="text"
+        readonly
+        class="text-[12px] border rounded-full h-10 w-[300px] text-center bg-transparent bg-blue-100"
+      />
+
+      <!-- Button to copy the full route to the clipboard -->
+      <Icon
+        name="solar:copy-bold"
+        width="256"
+        height="256"
+        style="color: green"
+        @click="copyToClipboard"
+        class="border text-2xl h-10 p-1 bg-green-500 cursor-pointer"
+      />
     </div>
 
     <!-- Confirmation message -->
@@ -19,12 +26,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router'; // Import useRoute composable
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router"; // Import useRoute composable
 
 // Reactive property for storing the full route
-const fullRoute = ref('');
-const copySuccess = ref(''); // Confirmation message
+const fullRoute = ref("");
+const copySuccess = ref(""); // Confirmation message
 
 // Get the current route object using Vue Router
 const route = useRoute();
@@ -41,13 +48,13 @@ const copyToClipboard = async () => {
     await navigator.clipboard.writeText(fullRoute.value); // Use Clipboard API to copy the text
     copySuccess.value = "Route copied to clipboard!";
   } catch (err) {
-    console.error('Failed to copy the route: ', err);
+    console.error("Failed to copy the route: ", err);
     copySuccess.value = "Failed to copy the route!";
   }
 
   // Clear the message after a few seconds (optional)
   setTimeout(() => {
-    copySuccess.value = '';
+    copySuccess.value = "";
   }, 3000);
 };
 

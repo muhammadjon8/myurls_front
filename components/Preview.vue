@@ -1,19 +1,22 @@
+<template>
+  <div class="flex flex-col items-center justify-center py-4">
+    <p v-if="profile.full_name">{{ profile.full_name }}</p>
+    <p v-else> No Account found for this User</p>
+    <p v-if="errorMessage">{{ errorMessage }}</p>
+  </div>
+  <div class="flex flex-col justify-center items-center">
+    <CopyToClipboard />
+    <Avatar :photo="imageUrl || profile?.photo" />
+    <p v-if="profile.username">{{ profile.username }}</p>
+    <Links :id="profile.id" />
+  </div>
+</template>
+
 <script setup>
-import Navbar from "../components/Navbar.vue";
-import Preview from "../components/Preview.vue";
-import Customize from "../components/Customize.vue";
 import { ref, onMounted } from "vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
-
-// Ref to control which component to show
-const menu = ref("preview");
-
-// Handle changes in the menu from the Navbar
-function updateMenu(selectedMenu) {
-  menu.value = selectedMenu;
-}
-const isLoggedIn = ref(false);
+import Avatar from "./Avatar.vue";
 
 const imageUrl = ref("");
 
@@ -50,18 +53,3 @@ onMounted(async () => {
   }
 });
 </script>
-
-<template>
-  <div class="flex flex-col justify-center items-center">
-    <!-- Pass updateMenu function to Navbar so it can trigger changes -->
-    <Navbar @menuChange="updateMenu" />
-  </div>
-
-  <div>
-    <!-- Conditionally render components based on the value of menu -->
-    <Preview v-if="menu === 'preview'" />
-    <Customize v-else-if="menu == 'customize'" />
-  </div>
-</template>
-
-<style scoped></style>

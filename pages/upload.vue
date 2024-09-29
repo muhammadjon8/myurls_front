@@ -1,70 +1,73 @@
 <template>
-  <div class="file-upload">
-    <h2>Upload an Image</h2>
-    <form @submit.prevent="uploadFile">
-      <input type="file" @change="handleFileChange" accept=".jpg, .jpeg, .png" />
-      <button type="submit" :disabled="!selectedFile">Upload</button>
-    </form>
-    <div v-if="uploadStatus">
-      <p>{{ uploadStatus }}</p>
+  <div class="flex flex-col items-center justify-center py-9">
+    <!-- Avatar Display (Round Shape) -->
+    <div class="avatar">
+      <img v-if="imageUrl" :src="imageUrl" alt="Profile Avatar" />
+      <img v-else-if="props.photo" :src="props.photo" alt="" />
+      <img
+        v-else
+        class="placeholder"
+        src="../public/avatar.png"
+        alt=""
+      />
     </div>
-    <div v-if="imageUrl">
-      <p>Uploaded Image URL: <a :href="imageUrl" target="_blank">{{ imageUrl }}</a></p>
-    </div>
+
+    <!-- File Input for Image Upload -->
+    <input type="file" @change="previewImage" accept="image/*" />
+
+    <!-- Optionally, Save Button -->
+    <button @click="saveImage">Save Image</button>
   </div>
 </template>
 
-<script>
-import axios from 'axios';
+<script setup>
+import { ref } from "vue";
 
-export default {
-  data() {
-    return {
-      selectedFile: null,
-      uploadStatus: '',
-      imageUrl: '',
+// Reactive property to hold the image URL for preview
+const imageUrl = ref("");
+
+const props = defineProps({
+  photo: String,
+});
+
+// Function to preview the image
+const previewImage = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    // When the file is loaded, set the imageUrl to display the preview
+    reader.onload = () => {
+      imageUrl.value = reader.result;
     };
-  },
-  methods: {
-    handleFileChange(event) {
-      const file = event.target.files[0]; // Get the first file
-      if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
-        this.selectedFile = file; // Set the selected file if it's valid
-      } else {
-        this.selectedFile = null; // Reset if the file is not valid
-        alert('Please select a valid image file (JPEG or PNG).');
-      }
-    },
-    async uploadFile() {
-      if (!this.selectedFile) return;
+  }
+};
 
-      const formData = new FormData();
-      formData.append('image', this.selectedFile);
-
-      try {
-        const response = await axios.post('http://localhost:3030/api/upload', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-        this.uploadStatus = 'Upload successful!';
-        this.imageUrl = response.data.imageUrl;
-      } catch (error) {
-        this.uploadStatus = 'Upload failed: ' + error.response.data.message;
-      }
-    },
-  },
+// Function to save the image (optional, for saving to DB later)
+const saveImage = () => {
+  // Implement your logic to save the file to the database
+  console.log("Image saved to DB");
 };
 </script>
 
 <style scoped>
-.file-upload {
-  max-width: 400px;
-  margin: auto;
-  text-align: center;
+/* Styling for the round avatar */
+.avatar {
+  width: 200px; /* You can adjust the avatar size here */
+  height: 200px; /* Ensure width and height are the same for a round shape */
+  border-radius: 50%; /* This makes the avatar round */
+  overflow: hidden;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-input[type="file"] {
-  margin-bottom: 10px;
+.avatar img {
+  width: 100%; /* Ensure the image fits the container */
+  height: 100%;
+  object-fit: cover; /* Ensures the image fills the circular container without distortion */
+  object-position: center; /* Centers the image within the circle */
 }
 </style>

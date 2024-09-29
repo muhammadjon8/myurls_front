@@ -11,12 +11,6 @@
         alt=""
       />
     </div>
-
-    <!-- File Input for Image Upload -->
-    <!-- <input type="file" @change="previewImage" accept="image/*" /> -->
-
-    <!-- Optionally, Save Button -->
-    <!-- <button @click="saveImage">Save Image</button> -->
   </div>
 </template>
 
