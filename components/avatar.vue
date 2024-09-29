@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-center py-9">
+  <div class="flex flex-col items-center justify-center pt-9">
     <!-- Avatar Display (Round Shape) -->
     <div class="avatar">
       <img v-if="imageUrl" :src="imageUrl" alt="Profile Avatar" />

@@ -1,7 +1,7 @@
 <template>
-  <div  class="grid grid-cols-2 gap-5">
-    <div v-for="link in userLinks" :key="link.id" class="border rounded-lg py-5 px-10">
-      <a :href="link.url_link" class="px-9">{{ link.url_name }}</a>
+  <div  class="grid grid-cols-2 gap-5 w-1/2">
+    <div v-for="link in userLinks" :key="link.id" class="border rounded-lg py-5 px-20 text-center">
+      <a :href="link.url_link">{{ link.url_name }}</a>
     </div>
     <p v-if="!userLinks.length">No links available.</p>
   </div>

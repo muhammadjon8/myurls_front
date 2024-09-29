@@ -7,7 +7,7 @@
     <CopyToClipboard />
     <p v-if="profile.username">{{ profile.username }}</p>
     <UpdateAvatar :photo="imageUrl || profile.photo" :id="profile.id"/>
-    <Links :id="profile.id" />
+    <EditLinks :id="profile.id" />
   </div>
 </template>
 
