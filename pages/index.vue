@@ -37,11 +37,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col justify-center items-center">
     <!-- This message is shown only if the user is not logged in -->
-    Hello to the website, please Log in
+    <h1 class="text-2xl text-green-500 mt-56">Hello to the website, please Log in</h1>
+    <div class="flex gap-5">
+      <NuxtLink to="login"  class="py-2 px-4 rounded-lg border">Login</NuxtLink>
+      <NuxtLink to="register" class="py-2 px-4 rounded-lg border">Register</NuxtLink>
+    </div>
   </div>
-  <CopyToClipboard />
+  <!-- <CopyToClipboard /> -->
 </template>
 
 <style scoped></style>

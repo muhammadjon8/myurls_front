@@ -35,7 +35,7 @@ const errorMessage = ref("");
 // Fetch profile data on component mount
 onMounted(async () => {
   try {
-    console.log("Fetching profile for:", slug); // Log slug value
+    // console.log("Fetching profile for:", slug); // Log slug value
     const { data } = await axios.get(
       `http://localhost:3030/api/user/profile/${slug}`
     );
