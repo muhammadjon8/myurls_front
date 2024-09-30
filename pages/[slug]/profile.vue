@@ -6,7 +6,6 @@ import { ref, onMounted } from "vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
 
-// Ref to control which component to show
 const menu = ref("preview");
 
 // Handle changes in the menu from the Navbar
