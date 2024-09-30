@@ -15,13 +15,13 @@ function updateMenu(selectedMenu) {
 
 const isLoggedIn = ref(false);
 const errorMessage = ref("");
+const slug = route.params.slug;
 
 // Get the route params for the slug
 const route = useRoute();
 
 // Fetch profile data on component mount
 onMounted(async () => {
-  const slug = route.params.slug;
   try {
     const response = await axios.post(
       "http://localhost:3030/api/user/customize",
