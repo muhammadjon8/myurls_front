@@ -12,7 +12,7 @@
       />
     </div>
 
-    <p class="text-red-500">Warning: rasm tanlayotganda fayl nomida bo'sh joy bo'lmasin ex: rasm profil.png(xato) rasm_profil.png(to'g'ri)</p>
+    <p class="text-red-500 px-5">Warning: rasm tanlayotganda fayl nomida bo'sh joy bo'lmasin ex: rasm profil.png(xato) rasm_profil.png(to'g'ri)</p>
 
     <!-- File Input for Image Upload -->
     <div class="flex gap-5 py-5">

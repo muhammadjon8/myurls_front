@@ -1,6 +1,6 @@
 <template>
   <p v-if="successMessage" class="text-green-500">{{ successMessage }}</p>
-  <div class="flex flex-col gap-3 w-1/2">
+  <div class="flex flex-col gap-3 md:w-1/2">
     <div
       v-for="link in userLinks"
       :key="link.id"
