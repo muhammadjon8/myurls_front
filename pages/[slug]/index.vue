@@ -1,7 +1,5 @@
 <script setup>
-import Navbar from "../components/Navbar.vue";
 import Preview from "../components/Preview.vue";
-import Customize from "../components/Customize.vue";
 import { ref, onMounted } from "vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
