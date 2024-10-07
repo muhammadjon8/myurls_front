@@ -13,24 +13,25 @@ function updateMenu(selectedMenu) {
   menu.value = selectedMenu;
 }
 
+const route = useRoute();
 const isLoggedIn = ref(false);
 const errorMessage = ref("");
 const slug = route.params.slug;
 
 // Get the route params for the slug
-const route = useRoute();
 
 // Fetch profile data on component mount
 onMounted(async () => {
   try {
     const response = await axios.post(
       "http://localhost:3030/api/user/customize",
-      { username: slug }
+      { username: slug },
+      { withCredentials: true }
     );
-    console.log("Is logged in response:", response.data);
+    // console.log("Is logged in response:", response.data);
     
     // Assuming your API sends back a boolean `isLoggedIn` in response.data
-    isLoggedIn.value = response.data.isLoggedIn;
+    isLoggedIn.value = response.data;
   } catch (error) {
     console.error("Error fetching profile data:", error);
     if (error.response && error.response.data) {
