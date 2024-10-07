@@ -22,7 +22,7 @@ const checkLogin = async () => {
     console.log(username); // Assuming response.data is the username
 
     if (username) {
-      router.push(`/${username}`); // Redirect to the user's profile page
+      router.push(`/${username}/profile`); // Redirect to the user's profile page
     }
   } catch (error) {
     console.error("Error checking login status:", error);
