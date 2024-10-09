@@ -12,7 +12,10 @@
       />
     </div>
 
-    <p class="text-red-500 px-5">Warning: rasm tanlayotganda fayl nomida bo'sh joy bo'lmasin ex: rasm profil.png(xato) rasm_profil.png(to'g'ri)</p>
+    <p class="text-red-500 px-5">
+      Warning: rasm tanlayotganda fayl nomida bo'sh joy bo'lmasin ex: rasm
+      profil.png(xato) rasm_profil.png(to'g'ri)
+    </p>
 
     <!-- File Input for Image Upload -->
     <div class="flex gap-5 py-5">
@@ -23,7 +26,12 @@
       </label>
 
       <!-- Save Button -->
-      <button @click="saveImage" class="border rounded-lg p-2 hover:bg-green-500">Save Image</button>
+      <button
+        @click="saveImage"
+        class="border rounded-lg p-2 hover:bg-green-500"
+      >
+        Save Image
+      </button>
     </div>
     <p v-if="updateSuccess" class="text-green-600">
       Profile image successfully updated
@@ -64,7 +72,7 @@ const previewImage = (event) => {
 // Function to save the image to the server
 const saveImage = async () => {
   if (!file.value) {
-    alert("Please select a file to save")
+    alert("Please select a file to save");
     return;
   }
 
@@ -75,7 +83,7 @@ const saveImage = async () => {
 
     // Upload the image file to the server
     const uploader = await axios.post(
-      "http://95.130.227.35/api/upload",
+      "https://95.130.227.35/api/upload",
       formData,
       {
         headers: {
@@ -89,7 +97,7 @@ const saveImage = async () => {
       const uploadedImageUrl = uploader.data.imageUrl; // Get the uploaded image URL
 
       // Send a PATCH request to update the user's photo in the DB
-      await axios.patch(`http://95.130.227.35/api/user/${props.id}`, {
+      await axios.patch(`https://95.130.227.35/api/user/${props.id}`, {
         photo: uploadedImageUrl,
       });
 

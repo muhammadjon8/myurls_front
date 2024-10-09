@@ -6,7 +6,7 @@
   <div class="flex flex-col justify-center items-center">
     <CopyToClipboard />
     <p v-if="profile.username">{{ profile.username }}</p>
-    <UpdateAvatar :photo="imageUrl || profile.photo" :id="profile.id"/>
+    <UpdateAvatar :photo="imageUrl || profile.photo" :id="profile.id" />
     <EditLinks :id="profile.id" />
   </div>
 </template>
@@ -37,7 +37,7 @@ onMounted(async () => {
   try {
     // console.log("Fetching profile for:", slug); // Log slug value
     const { data } = await axios.get(
-      `http://95.130.227.35/api/user/profile/${slug}`
+      `https://95.130.227.35/api/user/profile/${slug}`
     );
     // console.log("API Response:", data);  // Log the full response/
 

@@ -113,7 +113,7 @@ function toggleLink(selectedLink) {
 async function fetchUserLinks() {
   try {
     const response = await axios.get(
-      `http://95.130.227.35/api/user-links/${props.id}`
+      `https://95.130.227.35/api/user-links/${props.id}`
     );
     userLinks.value = response.data; // Assuming response.data is an array of links
   } catch (error) {
@@ -144,7 +144,7 @@ async function addNewLink() {
   }
 
   try {
-    await axios.post("http://95.130.227.35/api/user-links", {
+    await axios.post("https://95.130.227.35/api/user-links", {
       user_id: props.id,
       url_name: newLinkName.value,
       url_link: newLinkUrl.value,
@@ -186,7 +186,7 @@ async function updateLink(link) {
 
   // console.log(link)
   try {
-    await axios.patch(`http://95.130.227.35/api/user-links/${link.id}`, {
+    await axios.patch(`https://95.130.227.35/api/user-links/${link.id}`, {
       url_name: linkName.value,
       url_link: linkUrl.value,
     });
@@ -208,7 +208,7 @@ async function updateLink(link) {
 // Delete link
 async function deleteLink(link) {
   try {
-    await axios.delete(`http://95.130.227.35/api/user-links/${link.id}`);
+    await axios.delete(`https://95.130.227.35/api/user-links/${link.id}`);
     successMessage.value = "Link deleted successfully.";
 
     setTimeout(() => {

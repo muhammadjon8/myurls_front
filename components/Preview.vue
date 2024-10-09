@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center justify-center py-4">
     <p v-if="profile.full_name">{{ profile.full_name }}</p>
-    <p v-else> No Account found for this User</p>
+    <p v-else>No Account found for this User</p>
     <p v-if="errorMessage">{{ errorMessage }}</p>
   </div>
   <div class="flex flex-col justify-center items-center">
@@ -37,7 +37,7 @@ onMounted(async () => {
   try {
     // console.log("Fetching profile for:", slug); // Log slug value
     const { data } = await axios.get(
-      `http://95.130.227.35/api/user/profile/${slug}`
+      `https://95.130.227.35/api/user/profile/${slug}`
     );
     // console.log("API Response:", data);  // Log the full response/
 

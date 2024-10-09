@@ -24,18 +24,20 @@ const slug = route.params.slug;
 onMounted(async () => {
   try {
     const response = await axios.post(
-      "http://95.130.227.35/api/user/customize",
+      "https://95.130.227.35/api/user/customize",
       { username: slug },
       { withCredentials: true }
     );
     // console.log("Is logged in response:", response.data);
-    
+
     // Assuming your API sends back a boolean `isLoggedIn` in response.data
     isLoggedIn.value = response.data;
   } catch (error) {
     console.error("Error fetching profile data:", error);
     if (error.response && error.response.data) {
-      errorMessage.value = error.response.data.message || "There was an error checking the user's status.";
+      errorMessage.value =
+        error.response.data.message ||
+        "There was an error checking the user's status.";
     } else {
       errorMessage.value = "Network error. Please try again later.";
     }
@@ -54,7 +56,7 @@ onMounted(async () => {
       <Customize v-if="menu === 'customize'" />
     </div>
   </div>
-  
+
   <div v-else>
     <h1>User is not logged in to edit this account</h1>
     <p v-if="errorMessage">{{ errorMessage }}</p>
