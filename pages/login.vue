@@ -58,7 +58,7 @@ const login = async () => {
   // Add your login logic here
   try {
     const response = await axios.post(
-      "https://95.130.227.35/api/user/login",
+      "http://95.130.227.35/api/user/login",
       {
         username: username.value,
         password: password.value,

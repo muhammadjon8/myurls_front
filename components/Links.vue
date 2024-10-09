@@ -25,7 +25,7 @@ const userLinks = ref("");
 async function fetchUserLinks() {
   try {
     const response = await axios.get(
-      `https://95.130.227.35/api/user-links/${props.id}`
+      `http://95.130.227.35/api/user-links/${props.id}`
     );
     userLinks.value = response.data; // Assuming response.data is an array of links
   } catch (error) {

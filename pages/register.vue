@@ -104,7 +104,7 @@ const register = async () => {
 
   try {
     // Make API call to register the user
-    const response = await axios.post("https://95.130.227.35/api/user", {
+    const response = await axios.post("http://95.130.227.35/api/user", {
       full_name: fullname.value,
       username: username.value,
       email: email.value,

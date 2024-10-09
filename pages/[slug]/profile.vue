@@ -24,7 +24,7 @@ const slug = route.params.slug;
 onMounted(async () => {
   try {
     const response = await axios.post(
-      "https://95.130.227.35/api/user/customize",
+      "http://95.130.227.35/api/user/customize",
       { username: slug },
       { withCredentials: true }
     );

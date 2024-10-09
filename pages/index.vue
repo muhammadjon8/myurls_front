@@ -9,7 +9,7 @@ const router = useRouter();
 const checkLogin = async () => {
   try {
     const response = await axios.post(
-      "https://95.130.227.35/api/user/username",
+      "http://95.130.227.35/api/user/username",
       null,
       {
         withCredentials: true, // This allows sending cookies with the request

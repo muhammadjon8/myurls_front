@@ -14,7 +14,7 @@ const errorMessage = ref("");
 onMounted(async () => {
   try {
     const data = await axios.get(
-      `https://95.130.227.35/api/user/profile/${slug}`
+      `http://95.130.227.35/api/user/profile/${slug}`
     );
     if (data.value) {
       allData.value = data.value;

@@ -37,7 +37,7 @@ onMounted(async () => {
   try {
     // console.log("Fetching profile for:", slug); // Log slug value
     const { data } = await axios.get(
-      `https://95.130.227.35/api/user/profile/${slug}`
+      `http://95.130.227.35/api/user/profile/${slug}`
     );
     // console.log("API Response:", data);  // Log the full response/
 
