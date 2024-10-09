@@ -75,7 +75,7 @@ const saveImage = async () => {
 
     // Upload the image file to the server
     const uploader = await axios.post(
-      "http://localhost:3030/api/upload",
+      "http://95.130.227.35/api/upload",
       formData,
       {
         headers: {
@@ -89,7 +89,7 @@ const saveImage = async () => {
       const uploadedImageUrl = uploader.data.imageUrl; // Get the uploaded image URL
 
       // Send a PATCH request to update the user's photo in the DB
-      await axios.patch(`http://localhost:3030/api/user/${props.id}`, {
+      await axios.patch(`http://95.130.227.35/api/user/${props.id}`, {
         photo: uploadedImageUrl,
       });
 

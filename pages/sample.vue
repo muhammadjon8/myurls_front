@@ -41,7 +41,7 @@ const submitForm = async (event) => {
   }
 
   try {
-    const response = await axios.post("http://localhost:3030/api/user", {
+    const response = await axios.post("http://95.130.227.35/api/user", {
       full_name: name.value,
       username: username.value,
       link: link.value,
